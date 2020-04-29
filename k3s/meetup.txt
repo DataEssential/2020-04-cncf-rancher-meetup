@@ -1,0 +1,48 @@
+# Info
+MASTER k3s1 (192.168.99.81)
+WORKER k3s2 (192.168.99.82)
+
+# Install (so easy :-))
+ssh k3s1
+sudo sed -i s/raspberrypi/k3s2/ /etc/hostname
+sudo sed -i s/raspberrypi/k3s2/ /etc/hosts
+echo -e "192.168.99.81\tk3s1" | sudo tee -a /etc/hosts
+sudo reboot
+curl -sfL https://get.k3s.io | sh -
+alias k="sudo kubectl"
+
+# get the join token
+sudo cat /var/lib/rancher/k3s/server/node-token
+k get nodes -w
+
+# Add a WORKER
+ssh k3s2
+sudo sed -i s/raspberrypi/k3s2/ /etc/hostname
+sudo sed -i s/raspberrypi/k3s2/ /etc/hosts
+echo -e "192.168.99.82\tk3s2" | sudo tee -a /etc/hosts
+sudo reboot
+TOKEN='K10de6c7d70a87858a4118269c24eeb28d8ced2968a4759d831a589579c267bc1db::server:6f212a2b04ba64fbbe7b5a11ce6c4f1a'
+curl -sfL http://get.k3s.io | K3S_URL=https://192.168.99.81:6443 K3S_TOKEN=${TOKEN} sh -
+
+# From LAPTOP
+COPY /etc/rancher/k3s/k3s.yaml 
+change hostname
+
+# Deploy APP
+## DATA -> cerate a persistent disk (usb stick)
+sudo fdisk -l
+sudo fdisk /dev/sda
+sudo mkfs.ext4 /dev/sda1
+sudo mkdir -p /var/ghost/content
+sudo mount /dev/sda1 /var/ghost/content
+
+## create the APP
+k create -f ghost.yml
+k wait --for=condition=Ready deploy/blog --timeout=300s
+
+http://blog.192.168.99.82.xip.io/ghost/
+
+# uninstall
+/usr/local/bin/k3s-uninstall.sh
+/usr/local/bin/k3s-agent-uninstall.sh
+
