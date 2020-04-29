@@ -5,7 +5,7 @@ Show notes from April 2020 CNCF + Rancher Labs meetup
 ## Rancher K3s on Raspberry Pi
 
 * To prepare the Pi, I just used [Raspbian](https://www.raspberrypi.org/downloads/).
-* On my Mac, I use [BalenaEtcher](https://etcher.io/) to transfer the zip on the MicroSD. *TIP*: [creating an empty file named SSH on the root filesystem enable `ssh` at first boot](https://www.raspberrypi.org/documentation/remote-access/ssh/README.md).
+* On my Mac, I used [BalenaEtcher](https://etcher.io/) to transfer the zip on the MicroSD. *TIP*: [creating an empty file named SSH on the root filesystem enable `ssh` at first boot](https://www.raspberrypi.org/documentation/remote-access/ssh/README.md).
 * All other steps are documented in the files in `k3s` directory.
 
 ## Minikube
@@ -19,6 +19,6 @@ Show notes from April 2020 CNCF + Rancher Labs meetup
   * [Linux Foundation](https://training.linuxfoundation.org/training/introduction-to-kubernetes/).
   * [Udemy](https://www.udemy.com/course/docker-mastery/).
   * [Katacoda](https://katacoda.com/).
-  * [Game of pods game](https://kodekloud.com/p/game-of-pods-game)
+  * [Game of pods game](https://kodekloud.com/p/game-of-pods-game).
 * As mentionned, [Scaleway doesn't provide anymore arm64 instances](https://www.theregister.co.uk/2020/04/21/scaleway_arm64_cloud_end_of_life/)... That's life.
 * You can find the recording of the show on our [Youtube channel](https://www.youtube.com/channel/UC0P65MiWcYcHJ4HgoACbLCQ).
