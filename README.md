@@ -10,6 +10,11 @@ Show notes from April 2020 CNCF + Rancher Labs meetup
 
 ## Minikube
 
+* discover minikube option that could be useful 
+* test deployment of a go application to your minikube 
+* test skaffold inside k8s through minikube
+* all steps to test minikube and the go application are int the scenario text file
+
 ## Other notes
 
 * Minikube: [kubernetes.io](https://kubernetes.io/docs/setup/learning-environment/minikube/).
